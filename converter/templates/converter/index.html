@@ -1,0 +1,11 @@
+<p>Escolha o arquivo a ser convertido:</p>
+
+{% if form %}
+  <form enctype="multipart/form-data" method="post" action="/converter/">
+    {% csrf_token %}
+    <br>
+    {{ form }}
+    <br>
+    <input type="submit" value="Upload" />
+  </form>
+{% endif %}

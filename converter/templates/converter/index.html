@@ -1,11 +1,16 @@
 <p>Escolha o arquivo a ser convertido:</p>
 
-{% if form %}
-  <form enctype="multipart/form-data" method="post" action="/converter/">
+  <form enctype="multipart/form-data" method="post" action="https://sp.files.s3.amazonaws.com/">
     {% csrf_token %}
     <br>
-    {{ form }}
+    <input type="hidden" name="key" value="uploads/${filename}">
+    <input type="hidden" name="AWSAccessKeyId" value="AKIAJHL3JY6URSOBCIPA">
+    <input type="hidden" name="acl" value="private">
+    <input type="hidden" name="user" value="converter">
+    <input type="hidden" name="success_action_redirect" value="{{url}}/success">
+    <input type="hidden" name="policy" value="{{policy}}">
+    <input type="hidden" name="signature" value={{signature}}>
+    <input name="file" type="file">
     <br>
     <input type="submit" value="Upload" />
   </form>
-{% endif %}

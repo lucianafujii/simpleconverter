@@ -18,3 +18,7 @@ ainda está sendo convertido, o comportamento não é especificado.
 
 Todos os arquivos, convertidos e originais são públicos para leitura. Não faça
 upload de arquivos que não podem ser disponibilizados ao público.
+
+Se o nome do bucket utilizado contiver ponto, você poderá ter erros de
+certificado em alguns navegadores, como o chrome. O navegador não considera o
+endereço como subdomínio da amazon aws e mostra um aviso de segurança.

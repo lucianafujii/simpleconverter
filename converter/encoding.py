@@ -22,6 +22,7 @@ def create_query(filename, notify_url, error_url, upload_url):
              'source': ['http://sp.files.s3.amazonaws.com/uploads/' + filename],
              'notify': notify_url,
              'notify_upload': upload_url,
+             'notify_format': 'json',
              'instant': 'no',
              'format': {}}
     newfile = re.sub('\.[^.]+$', '.webm', filename)

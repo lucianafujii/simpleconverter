@@ -26,7 +26,7 @@ def success(request):
     except KeyError:
         return HttpResponse("Ocorreu um error processando o arquivo" + response)
     else:
-        video_file = VideoFile(filename=filename, media_id=media_id)
+        video_file = VideoFile(filename=filename, media_id=media_id, ready=False)
         video_file.save()
         return HttpResponse("O arquivo esta sendo processado: " + filename)
 
@@ -41,3 +41,30 @@ def index(request):
 def encoding_uploaded(request):
     filename = request.GET['filename']
     return render_to_response('converter/play.html', {'filename': filename})
+
+@csrf_exempt
+def notify_encoded(request):
+    # Receives request from encoding when file is ready
+    try:
+        print request.POST['json']
+    except KeyError:
+        print "Couldn't get json response"
+        return HttpResponse("OK")
+    try:
+        r = json.loads(request.POST['json'])
+        media_id = r['result']['mediaid']
+        print "media_id is " + media_id
+    except KeyError:
+        print "Problem receiving notify"
+        return HttpResponse("OK")
+    try:
+        video_file = VideoFile.objects.get(media_id=media_id)
+    except VideoFile.DoesNotExist:
+        print "Problem getting the corresponding video file"
+    else:
+        video_file.ready = True
+        video_file.save()
+        print "file ready"
+    return HttpResponse("OK")
+
+

@@ -21,9 +21,13 @@ function poll(){
 {% endblock %}
 
 {% block content %}
-<p>O arquivo está sendo processado</p>
+<p>Espere enquanto o arquivo está sendo processado.</p>
+
+{% load staticfiles %}
+<img src={% static "spinner.gif" %} alt="Wait" />
 
 <script>
+
 
 id = setInterval(poll, 5000);
 

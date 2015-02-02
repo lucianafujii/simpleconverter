@@ -1,0 +1,11 @@
+O simpleconverter é aceita uploads de arquivos de vídeo em diversos formatos e
+os converte em vídeos webm. Os arquivos de entrada e convertidos são
+armazenados no serviço Amazon S3 e a conversão é feita pelo serviço
+encoding.com.
+
+INSTRUÇÕES PARA USO
+
+Para usar seu próprio simpleconverter é necessário possuir uma conta na Amazon
+S3 e no Encoding.com. Edite o arquivo converter/config.py e adicione as chaves
+para esses serviços. Também é necessário configurar a hosting_url, para que o
+serviço de encoding informe quando um arquivo acabou de ser convertido.

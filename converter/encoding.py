@@ -28,7 +28,7 @@ def create_query(filename, notify_url, error_url, upload_url):
     format_webm = {
             'output': 'webm',
             'keep_aspect_ratio': 'yes',
-            'destination': 'http://sp.files.s3.amazonaws.com/uploads/' + newfile
+            'destination': 'http://sp.files.s3.amazonaws.com/uploads/' + newfile + '?acl=public-read'
             }
     query['format'] = [format_webm]
     return query

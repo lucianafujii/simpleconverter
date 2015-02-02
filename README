@@ -9,3 +9,12 @@ Para usar seu próprio simpleconverter é necessário possuir uma conta na Amazo
 S3 e no Encoding.com. Edite o arquivo converter/config.py e adicione as chaves
 para esses serviços. Também é necessário configurar a hosting_url, para que o
 serviço de encoding informe quando um arquivo acabou de ser convertido.
+
+LIMITAÇÔES
+
+Se o usuário escolher um arquivo com um nome que já existe, o arquivo anterior
+será sobrescrito. No caso de uma nova requisição acontecer enquanto o arquivo
+ainda está sendo convertido, o comportamento não é especificado.
+
+Todos os arquivos, convertidos e originais são públicos para leitura. Não faça
+upload de arquivos que não podem ser disponibilizados ao público.

@@ -18,7 +18,7 @@ def success(request):
             encoding_notify_url,
             encoding_notify_error,
             encoding_notify_upload)
-    return HttpResponse("Successfully uploaded file" + filename)
+    return HttpResponse("Successfully uploaded file " + filename)
 
 def error(request):
     return HttpResponse("There was an error processing the file")

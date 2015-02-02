@@ -1,0 +1,32 @@
+{% extends "converter/base.html" %}
+
+{% block header %}
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+function poll(){
+  $.get(
+      "{{check_media_url}}",
+      {media_id: {{media_id}}},
+      function(data) {
+        if (data == "True") {
+          clearInterval(id);
+          window.location = "{{ready_url}}";
+        } else if (data != "False") {
+          alert (data);
+        }
+      });
+}
+
+</script>
+{% endblock %}
+
+{% block content %}
+<p>O arquivo está sendo processado</p>
+
+<script>
+
+id = setInterval(poll, 5000);
+
+</script>
+
+{% endblock %}

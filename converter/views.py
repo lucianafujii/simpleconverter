@@ -28,7 +28,10 @@ def success(request):
     else:
         video_file = VideoFile(filename=filename, media_id=media_id, ready=False)
         video_file.save()
-        return HttpResponse("O arquivo esta sendo processado: " + filename)
+        return render_to_response('converter/waiting.html', {
+            'media_id': media_id,
+            'check_media_url': hosting_url + "/check_media",
+            'ready_url': hosting_url + '/encoded?media_id=' + media_id})
 
 def error(request):
     return HttpResponse("There was an error processing the file")
@@ -39,7 +42,10 @@ def index(request):
 
 
 def encoding_uploaded(request):
-    filename = request.GET['filename']
+    media_id = request.GET['media_id']
+    video_file = VideoFile.objects.get(media_id=media_id)
+    oldname = video_file.filename
+    filename = re.sub(r'\.[^.]+$', '.webm', oldname)
     return render_to_response('converter/play.html', {'filename': filename})
 
 @csrf_exempt
@@ -67,4 +73,14 @@ def notify_encoded(request):
         print "file ready"
     return HttpResponse("OK")
 
-
+def check_media(request):
+    try:
+        media_id = request.GET['media_id']
+    except KeyError:
+        return HttpResponse('Passe o media_id desejado')
+    else:
+        try:
+            video_file = VideoFile.objects.get(media_id=media_id)
+            return HttpResponse(video_file.ready)
+        except VideoFile.DoesNotExist:
+            return HttpResponse('ID incorreto')

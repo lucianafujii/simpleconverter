@@ -24,7 +24,7 @@ def create_query(filename, notify_url, error_url, upload_url):
              'notify_upload': upload_url,
              'instant': 'no',
              'format': {}}
-    newfile = re.sub('.dv$', '.webm', filename)
+    newfile = re.sub('\.[^.]+$', '.webm', filename)
     format_webm = {
             'output': 'webm',
             'keep_aspect_ratio': 'yes',

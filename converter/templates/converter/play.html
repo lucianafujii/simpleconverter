@@ -4,8 +4,8 @@
 
 <p>Toque seu vídeo convertido:</p>
 
-<video src="http://sp.files.s3.amazonaws.com/uploads/{{filename}}" controls>
-  Seu navegador não suporta a tag vídeo. Faça download do vídeo: <a href="http://sp.files.s3.amazonaws.com/uploads/{{filename}}"></a>
+<video src="{{s3_url}}videos/{{filename}}" controls>
+  Seu navegador não suporta a tag vídeo. Faça download do vídeo: <a href="{{s3_url}}videos/{{filename}}"></a>
 </video>
 
 {% endblock %}

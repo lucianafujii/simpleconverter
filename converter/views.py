@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from .aws import policy, signature
-from config import hosting_url, encoding_notify_url, encoding_notify_upload, encoding_notify_error
+from config import hosting_url, encoding_notify_url, encoding_notify_upload, encoding_notify_error, s3_url, s3_safe_url
 from encoding import transcode
 from converter.models import VideoFile
 import json
@@ -38,7 +38,7 @@ def error(request):
 
 def index(request):
     return render_to_response('converter/index.html',
-            {'policy': policy(), 'signature': signature(), 'url': hosting_url})
+            {'policy': policy(), 'signature': signature(), 'url': hosting_url, 's3_url': s3_safe_url})
 
 
 def encoding_uploaded(request):
@@ -46,7 +46,7 @@ def encoding_uploaded(request):
     video_file = VideoFile.objects.get(media_id=media_id)
     oldname = video_file.filename
     filename = re.sub(r'\.[^.]+$', '.webm', oldname)
-    return render_to_response('converter/play.html', {'filename': filename})
+    return render_to_response('converter/play.html', {'filename': filename, 's3_url': s3_url})
 
 @csrf_exempt
 def notify_encoded(request):

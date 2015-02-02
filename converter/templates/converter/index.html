@@ -4,13 +4,12 @@
 <p>Escolha o arquivo a ser convertido:</p>
 <p>(Se o arquivo for grande, o upload pode demorar algum tempo)</p>
 
-  <form enctype="multipart/form-data" method="post" action="https://sp.files.s3.amazonaws.com/">
+<form enctype="multipart/form-data" method="post" action="{{s3_url}}">
     {% csrf_token %}
     <br>
     <input type="hidden" name="key" value="uploads/${filename}">
     <input type="hidden" name="AWSAccessKeyId" value="AKIAJBYGT7JBLDPTIZYA">
     <input type="hidden" name="acl" value="private">
-    <input type="hidden" name="user" value="converter">
     <input type="hidden" name="success_action_redirect" value="{{url}}/success">
     <input type="hidden" name="policy" value="{{policy}}">
     <input type="hidden" name="signature" value={{signature}}>

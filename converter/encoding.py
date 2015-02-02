@@ -1,4 +1,4 @@
-from config import encoding_api_user_id, encoding_api_key, encoding_url
+from config import encoding_api_user_id, encoding_api_key, encoding_url, s3_url
 import re
 import json
 import urllib
@@ -19,7 +19,7 @@ def create_query(filename, notify_url, error_url, upload_url):
     query = {'userid': encoding_api_user_id,
              'userkey': encoding_api_key,
              'action': 'addmedia',
-             'source': ['http://sp.files.s3.amazonaws.com/uploads/' + filename],
+             'source': [s3_url + 'uploads/' + filename],
              'notify': notify_url,
              'notify_upload': upload_url,
              'notify_format': 'json',
@@ -29,7 +29,7 @@ def create_query(filename, notify_url, error_url, upload_url):
     format_webm = {
             'output': 'webm',
             'keep_aspect_ratio': 'yes',
-            'destination': 'http://sp.files.s3.amazonaws.com/uploads/' + newfile + '?acl=public-read'
+            'destination': s3_url + 'videos/' + newfile + '?acl=public-read'
             }
     query['format'] = [format_webm]
     return query

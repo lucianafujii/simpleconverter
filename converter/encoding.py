@@ -13,7 +13,7 @@ def transcode(filename, notify_url, error_url, upload_url):
     params = urllib.urlencode({'json': json.dumps(data)})
     connection.request('POST', '/', params, headers)
     r = connection.getresponse()
-    print r.read()
+    return r.read()
 
 def create_query(filename, notify_url, error_url, upload_url):
     query = {'userid': encoding_api_user_id,

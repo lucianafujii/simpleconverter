@@ -1,4 +1,4 @@
-O simpleconverter é aceita uploads de arquivos de vídeo em diversos formatos e
+O simpleconverter aceita uploads de arquivos de vídeo em diversos formatos e
 os converte em vídeos webm. Os arquivos de entrada e convertidos são
 armazenados no serviço Amazon S3 e a conversão é feita pelo serviço
 encoding.com.

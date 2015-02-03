@@ -7,7 +7,6 @@ policy_document = {"expiration": "2016-01-01T00:00:00Z",
             {"bucket": "your_bucket"},
             ["starts-with", "$key", "uploads/"],
             {"acl": "private"},
-            {"user": "converter"},
             {"success_action_redirect": success},
             ["content-length-range", 1, 1000048576]
             ]
@@ -17,6 +16,10 @@ encoding_api_user_id = YOUR_ENCODING_API_USER
 encoding_api_key = YOUR_ENCODING_API_KEY
 encoding_url = "http://manage.encoding.com:80"
 
+
+s3_bucket = YOUR_BUCKET
+s3_url = "http://yourbucket.s3.amazonaws.com/"
+s3_safe_url = "https://yourbucket.s3.amazonaws.com/"
 s3_key = YOUR_S3_KEY
 s3_secret_key = YOUR_S3_SECRET_KEY
 
